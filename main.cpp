@@ -11,6 +11,12 @@ void showMenu()
     std::cout << "2 - Read data" << std::endl;
 }
 
+
+VOID WINAPI readDone(DWORD dwErr, DWORD cbWritten,
+                     LPOVERLAPPED lpOverLap){
+
+}
+
 int main()
 {
     // Размер передаваемого сообщения
@@ -53,7 +59,8 @@ int main()
                     buffer,
                     bufferSize,
                     &overlappedStruct,
-                    nullptr);
+                    readDone);
+			    SleepEx(INFINITE, true);
                 std::cout << buffer << std::endl;
 			break;
 		case '0':
